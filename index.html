@@ -3,87 +3,182 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Time tracking dashboard</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <title>Time tracking dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
   <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
+    :root{
+      --Blue: hsl(246, 80%, 60%);
+      --Light-red-work-: hsl(15, 100%, 70%);
+      --Soft-blue-play: hsl(195, 74%, 62%);
+      --Light-red-study: hsl(348, 100%, 68%);
+      --Lime-green-exercise: hsl(145, 58%, 55%);
+      --Violet-social: hsl(264, 64%, 52%);
+      --Soft-orange-self-care-: hsl(43, 84%, 65%);
+      --Very-dark-blue: hsl(226, 43%, 10%);
+      --Dark-blue: hsl(235, 46%, 20%);
+      --Desaturated-blue: hsl(235, 45%, 61%);
+      --Pale-Blue: hsl(236, 100%, 87%);
+      font-family: 'Rubik', sans-serif;
+    }
+
   </style>
 </head>
 <body>
   <main>
-    <div class="user">
-      <div class="profile">
-        <img src="../images/image-jeremy.png" alt="user profile picture">
-        <h1>
-          <span>Report for</span>
-          Jeremy Robson
-        </h1>
-      </div>
-      <div class="filters">
-        <button class="active">Daily</button>
-        <button>Weekly</button>
-        <button>Monthly</button>
+    <div class="time-tracker">
+      <div class="user">
+        <div class="profile">
+          <img src="../images/image-jeremy.png" alt="user profile picture">
+          <h1>
+            <span>Report for</span>
+            Jeremy Robson
+          </h1>
+        </div>
+        <div class="filters">
+          <button class="daily active">Daily</button>
+          <button class="monthly">Weekly</button>
+          <button class="monthly">Monthly</button>
+        </div>
       </div>
     </div>
   </main>
+  <script>
+    const data = [
+                {
+                  "title": "Work",
+                  "timeframes": {
+                    "daily": {
+                      "current": 5,
+                      "previous": 7
+                    },
+                    "weekly": {
+                      "current": 32,
+                      "previous": 36
+                    },
+                    "monthly": {
+                      "current": 103,
+                      "previous": 128
+                    }
+                  }
+                },
+                {
+                  "title": "Play",
+                  "timeframes": {
+                    "daily": {
+                      "current": 1,
+                      "previous": 2
+                    },
+                    "weekly": {
+                      "current": 10,
+                      "previous": 8
+                    },
+                    "monthly": {
+                      "current": 23,
+                      "previous": 29
+                    }
+                  }
+                },
+                {
+                  "title": "Study",
+                  "timeframes": {
+                    "daily": {
+                      "current": 0,
+                      "previous": 1
+                    },
+                    "weekly": {
+                      "current": 4,
+                      "previous": 7
+                    },
+                    "monthly": {
+                      "current": 13,
+                      "previous": 19
+                    }
+                  }
+                },
+                {
+                  "title": "Exercise",
+                  "timeframes": {
+                    "daily": {
+                      "current": 1,
+                      "previous": 1
+                    },
+                    "weekly": {
+                      "current": 4,
+                      "previous": 5
+                    },
+                    "monthly": {
+                      "current": 11,
+                      "previous": 18
+                    }
+                  }
+                },
+                {
+                  "title": "Social",
+                  "timeframes": {
+                    "daily": {
+                      "current": 1,
+                      "previous": 3
+                    },
+                    "weekly": {
+                      "current": 5,
+                      "previous": 10
+                    },
+                    "monthly": {
+                      "current": 21,
+                      "previous": 23
+                    }
+                  }
+                },
+                {
+                  "title": "Self Care",
+                  "timeframes": {
+                    "daily": {
+                      "current": 0,
+                      "previous": 1
+                    },
+                    "weekly": {
+                      "current": 2,
+                      "previous": 2
+                    },
+                    "monthly": {
+                      "current": 7,
+                      "previous": 11
+                    }
+                  }
+                }
+              ];
+    const timeTracker = document.querySelector('.time-tracker');
+    function createCards (filter='daily'){
+      let cards = '';
+      for (let i = 0; i < data.length; i++) {
+        const e = data[i];
+        cards += `<div class="card ${e.title}">
+            <div class="card-img"></div>
+            <div class="details">
+              <p class="title">${e.title}</p>
+              <img src="./images/icon-ellipsis.svg" alt="">
+              <p class="current"><span class="data">${e.timeframes[filter].current}</span>hrs</p>
+              <p class="previous">Last <span class="mood">day</span> - <span class="data">${e.timeframes[filter].previous}</span>hrs</p>
+            </div>
+          </div>`
+      }
+      timeTracker.innerHTML += cards;
+    }
+    const allCards = document.querySelectorAll('.time-tracker .card');
+    function updateCards (filter){
+      for (let i = 0; i < data.length; i++) {
+        const e = data[i];
+        document.querySelector('.time-tracker .card .details .title').innerHTML = e.title;
+        document.querySelector('.time-tracker .card .details .mood').innerHTML = filter;
+        document.querySelector('.time-tracker .card .details .current').innerHTML = e.timeframes[filter].current;
+        document.querySelector('.time-tracker .card .details .previous').innerHTML = e.timeframes[filter].previous;
+      }
+      timeTracker.innerHTML += cards;
+    }
+    createCards()
 
-  Work
-  5hrs <!-- daily -->
-  Previous - 7hrs <!-- daily -->
-  32hrs <!-- weekly -->
-  Previous - 36hrs <!-- weekly -->
-  103hrs <!-- monthly -->
-  Previous - 128hrs <!-- monthly -->
-
-  Play
-  1hr <!-- daily -->
-  Previous - 2hrs <!-- daily -->
-  10hrs <!-- weekly -->
-  Previous - 8hrs <!-- weekly -->
-  23hrs <!-- monthly -->
-  Previous - 29hrs <!-- monthly -->
-
-  Study
-  0hrs <!-- daily -->
-  Previous - 1hr <!-- daily -->
-  4hrs <!-- weekly -->
-  Previous - 7hrs <!-- weekly -->
-  13hrs <!-- monthly -->
-  Previous - 19hrs <!-- monthly -->
-
-  Exercise
-  1hr <!-- daily -->
-  Previous - 1hr <!-- daily -->
-  4hrs <!-- weekly -->
-  Previous - 5hrs <!-- weekly -->
-  11hrs <!-- monthly -->
-  Previous - 18hrs <!-- monthly -->
-
-  Social
-  1hr <!-- daily -->
-  Previous - 3hrs <!-- daily -->
-  5hrs <!-- weekly -->
-  Previous - 10hrs <!-- weekly -->
-  21hrs <!-- monthly -->
-  Previous - 23hrs <!-- monthly -->
-
-  Self Care
-  0hrs <!-- daily -->
-  Previous - 1hr <!-- daily -->
-  2hrs <!-- weekly -->
-  Previous - 2hrs <!-- weekly -->
-  7hrs <!-- monthly -->
-  Previous - 11hrs <!-- monthly -->
-
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+  </script>
 </body>
 </html>
