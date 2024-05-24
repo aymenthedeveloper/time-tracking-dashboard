@@ -79,13 +79,17 @@ main .time-tracker .user .filters button{
   background-color: transparent;
   width: max-content;
   border: none;
-  color: white;
+  color: var(--Pale-Blue);
   text-align: left;
   font-size: 18px;
   cursor: pointer;
 }
+main .time-tracker .user .filters button:hover{
+  color: white;
+}
 main .time-tracker .user .filters button.active{
   font-weight: 700;
+  color: white;
 }
 
 main .time-tracker .card{
@@ -94,6 +98,7 @@ main .time-tracker .card{
   background-position: 90% 0;
   background-repeat: no-repeat;
 }
+
 
 main .time-tracker .card.work{
   background-color: var(--Light-red-work-);
@@ -126,6 +131,9 @@ main .time-tracker .card .details{
   background-color: var(--Dark-blue);
   padding: 20px var(--pad-x, 30px);
 }
+main .time-tracker .card .details:hover{
+  background-color: hsl(235, 46%, 30%)
+}
 main .time-tracker .card .details .top {
   display: flex;
   align-items: center;
@@ -137,7 +145,11 @@ main .time-tracker .card .details .top .title{
 }
 main .time-tracker .card .details .top img{
   width: 22px;
+  padding-block: 5px;
   cursor: pointer;
+}
+main .time-tracker .card .details .top img:hover{
+  filter: brightness(2);
 }
 main .time-tracker .card .details .data .current{
   font-size: 3.5rem;
