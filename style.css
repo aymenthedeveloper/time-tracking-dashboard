@@ -1,0 +1,229 @@
+:root{
+  --Blue: hsl(246, 80%, 60%);
+  --Light-red-work-: hsl(15, 100%, 70%);
+  --Soft-blue-play: hsl(195, 74%, 62%);
+  --Light-red-study: hsl(348, 100%, 68%);
+  --Lime-green-exercise: hsl(145, 58%, 55%);
+  --Violet-social: hsl(264, 64%, 52%);
+  --Soft-orange-self-care-: hsl(43, 84%, 65%);
+  --Very-dark-blue: hsl(226, 43%, 10%);
+  --Dark-blue: hsl(235, 46%, 20%);
+  --Desaturated-blue: hsl(235, 45%, 61%);
+  --Pale-Blue: hsl(236, 100%, 87%);
+  font-family: 'Rubik', sans-serif;
+}
+body{
+  margin: 0;
+  background-color: var(--Very-dark-blue);
+}
+
+main .time-tracker > *,
+main .time-tracker .user .profile,
+main .time-tracker .card .details{
+  border-radius: 1rem;
+}
+
+main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1440px;
+  min-height: 104vh;
+}
+
+main .time-tracker{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1110px;
+  min-height: 515px;
+  gap: 1.75rem;
+  color: white;
+}
+
+main .time-tracker .user,
+main .time-tracker .card .details{
+  background-color: var(--Dark-blue);
+}
+
+main .time-tracker .user{
+  grid-row: span 2;
+}
+main .time-tracker .user .profile{
+  padding: 35px var(--pad-x, 30px);
+  background-color: var(--Blue);
+}
+main .time-tracker .user .profile p{
+  margin-block: 2.5em .15em;
+  font-size: 15px;
+  color: var(--Pale-Blue);
+}
+main .time-tracker .user .profile h1{
+  margin-block: 0 1.1em;
+  font-weight: 300;
+  font-size: 2.5rem;
+  line-height: 120%;
+}
+main .time-tracker .user .profile img{
+  width: 75px;
+  border: 4px solid white;
+  border-radius: 50%;
+}
+
+
+main .time-tracker .user .filters{
+  padding: 26px var(--pad-x, 26px);
+  display: grid;
+  gap: 18px;
+}
+main .time-tracker .user .filters button{
+  background-color: transparent;
+  width: max-content;
+  border: none;
+  color: white;
+  text-align: left;
+  font-size: 18px;
+  cursor: pointer;
+}
+main .time-tracker .user .filters button.active{
+  font-weight: 700;
+}
+
+main .time-tracker .card{
+  display: grid;
+  padding-top: 40px;
+  background-position: 90% 0;
+  background-repeat: no-repeat;
+}
+
+main .time-tracker .card.work{
+  background-color: var(--Light-red-work-);
+  background-image: url(./images/icon-work.svg);
+}
+main .time-tracker .card.play{
+  background-image: url(./images/icon-play.svg);
+  background-color: var(--Soft-blue-play);
+}
+main .time-tracker .card.study{
+  background-color: var(--Light-red-study);
+  background-image: url(./images/icon-study.svg);
+}
+main .time-tracker .card.exercise{
+  background-color: var(--Lime-green-exercise);
+  background-image: url(./images/icon-exercise.svg);
+}
+main .time-tracker .card.social{
+  background-color: var(--Violet-social);
+  background-image: url(./images/icon-social.svg);
+}
+main .time-tracker .card.self-care{
+  background-color: var(--Soft-orange-self-care-);
+  background-image: url(./images/icon-self-care.svg);
+}
+
+
+main .time-tracker .card .details{
+  align-self: end;
+  background-color: var(--Dark-blue);
+  padding: 20px var(--pad-x, 30px);
+}
+main .time-tracker .card .details .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+main .time-tracker .card .details .top .title{
+  font-size: 18px;
+  margin-block: .5em;
+}
+main .time-tracker .card .details .top img{
+  width: 22px;
+  cursor: pointer;
+}
+main .time-tracker .card .details .data .current{
+  font-size: 3.5rem;
+  margin-block: .25em .2em;
+  font-weight: 300;
+}
+main .time-tracker .card .details .data .previous{
+  margin-block: 0 11px;
+  font-size: 15px;
+  color: var(--Desaturated-blue);
+}
+
+@media (min-width: 1440px){
+  main {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 1200px){
+  body {
+    padding-block: 100px;
+  }
+  main .time-tracker{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  main .time-tracker .card{
+    padding-top: 50px;
+  }
+  main .time-tracker .card .details .data{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  main .time-tracker .card .details .data .current{
+    font-size: 2.75rem;
+    margin-block: .4em;
+  }
+  main .time-tracker .card .details .data .previous{
+    margin-block: 0;
+  }
+  
+}
+@media (max-width: 850px){
+  main .time-tracker{
+    grid-template-columns: 1fr;
+  }
+  main .time-tracker .card{
+    padding-top: 50px;
+  }
+  main .time-tracker .user .filters{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  main .time-tracker .card .details .data .current{
+    font-size: 2.25rem;
+  }
+  main .time-tracker .card{
+    padding-top: 50px;
+  }
+}
+@media (max-width: 450px){
+  :root{
+    --pad-x: 1rem;
+  }
+  main {
+    padding-inline: 1.375rem;
+  }
+  main .time-tracker .user .profile{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    column-gap: .5rem;
+  }
+  main .time-tracker .user .profile p{
+    margin-block: .25em 0;
+  }
+  main .time-tracker .user .profile h1{
+    font-size: 2rem;
+    margin-block: 0 .25em;
+  }
+  main .time-tracker .user .profile img{
+    grid-row: span 2;
+  }
+  main .time-tracker .card .details .data .current{
+    font-size: 1.75rem;
+    font-weight: 500;
+  }
+  
+}
